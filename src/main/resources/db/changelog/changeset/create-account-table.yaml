@@ -1,9 +1,9 @@
 databaseChangeLog:
-  - changeset:
+  - changeSet:
       id: create-account
       author: Evgen
       changes:
-        - reateTable:
+        - createTable:
             tableName: account
             columns:
               - column:

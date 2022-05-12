@@ -1,2 +1,8 @@
-package ru.petrov.virtualcompany.repositoryes;public interface AppUserRepository {
+package ru.petrov.virtualcompany.repositoryes;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import ru.petrov.virtualcompany.entitys.AppUser;
+
+public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
+    AppUser findByUsername(String username);
 }

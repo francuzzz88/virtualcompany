@@ -1,34 +1,37 @@
 databaseChangeLog:
   - changeSet:
-      id: create-user
+      id: create-user-user-role_table
       author: Evgen
       changes:
         - createTable:
-            tableName: app_user
+            tableName: app_user_user_roles
             columns:
               - column:
-                  name: id
+                  name: app_user_id
                   type: bigint
-                  autoIncrement: true
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: username
-                  type: varchar(255)
+                  name: user_roles_id
+                  type: bigint
                   constraints:
-                    unique: true
+                    primaryKey: true
                     nullable: false
-              - column:
-                  name: password
-                  type: varchar(512)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: email
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: user_roles
-                  type: varchar(50)
+
+  - changeSet:
+      id: add_relations
+      author: Evgen
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: user_roles_id
+            baseTableName: app_user_user_roles
+            constraintName: user_roles_id_fk
+            referencedColumnNames: id
+            referencedTableName: app_role
+        - addForeignKeyConstraint:
+            baseColumnNames: app_user_id
+            baseTableName: app_user_user_roles
+            constraintName: app_user_id_fk
+            referencedColumnNames: id
+            referencedTableName: app_user

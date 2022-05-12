@@ -1,1 +1,9 @@
-
+spring:
+  liquibase: true
+  datasource:
+    url: jdbc:h2:file:~/data_h2/virtualcompany;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+    username: u
+    password: 1
+  h2:
+    console:
+      enabled: true
