@@ -7,3 +7,12 @@ spring:
   h2:
     console:
       enabled: true
+
+#
+#jwt:
+#  access:
+#    secret: secret
+#    expiration: 900000
+#  refresh:
+#    secret: secret
+#    expiration: 259200000
