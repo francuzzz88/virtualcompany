@@ -24,4 +24,7 @@ public class AppUser {
     private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<AppRole> userRoles = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 }

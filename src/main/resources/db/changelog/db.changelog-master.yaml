@@ -7,5 +7,7 @@ databaseChangeLog:
       file: db/changelog/changeset/create-role-table.yaml
   - include:
       file: db/changelog/changeset/create-user-role-table.yaml
+  - include:
+      file: db/changelog/changeset/create-links-appuser-account.yaml
 
 

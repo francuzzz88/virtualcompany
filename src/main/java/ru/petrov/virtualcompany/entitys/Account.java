@@ -1,5 +1,6 @@
 package ru.petrov.virtualcompany.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,10 @@ public class Account {
     private String lastname;
     private String username;
     private String email;
+    @OneToOne
+    @JoinColumn(name = "app_user_id")
+    @JsonIgnore
+    private AppUser appUser;
 
 
 }
