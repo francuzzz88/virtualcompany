@@ -5,4 +5,5 @@ import ru.petrov.virtualcompany.entitys.AppUser;
 
 public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
     AppUser findByUsername(String username);
+    void deleteAppUserByUsername(String username);
 }

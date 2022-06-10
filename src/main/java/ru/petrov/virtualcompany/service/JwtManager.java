@@ -2,8 +2,9 @@ package ru.petrov.virtualcompany.service;
 
 import org.springframework.security.core.userdetails.User;
 
-public interface JwtProvider {
+public interface JwtManager {
     String generatedJwtAccessToken(User user);
     String generatedJwtRefreshToken(User user);
-    User verifyToken(String token);
+    User verifyAccessToken(String token);
+    User verifyRefreshToken(String token);
 }

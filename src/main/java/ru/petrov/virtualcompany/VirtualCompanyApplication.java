@@ -14,8 +14,8 @@ import java.util.ArrayList;
 @SpringBootApplication
 public class VirtualCompanyApplication {
 
-   @Autowired
-   private PasswordEncoder passwordEncoder;
+//   @Autowired
+//   private PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(VirtualCompanyApplication.class, args);

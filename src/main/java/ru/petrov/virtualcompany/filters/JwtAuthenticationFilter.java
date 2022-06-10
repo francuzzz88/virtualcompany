@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.petrov.virtualcompany.service.JwtProvider;
+import ru.petrov.virtualcompany.service.JwtManager;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -18,15 +18,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
-    private final JwtProvider jwtProvider;
+    private final JwtManager jwtManager;
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtProvider jwtProvider) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtManager jwtManager) {
         this.authenticationManager = authenticationManager;
-        this.jwtProvider = jwtProvider;
+        this.jwtManager = jwtManager;
     }
 
 
@@ -43,12 +42,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
-                                            FilterChain chain, Authentication authResult) throws IOException, ServletException {
+                                            FilterChain chain, Authentication authResult) throws IOException {
 
         User user = (User) authResult.getPrincipal();
 
-        String jwtAccessToken = jwtProvider.generatedJwtAccessToken(user);
-        String jwtRefreshToken = jwtProvider.generatedJwtRefreshToken(user);
+        String jwtAccessToken = jwtManager.generatedJwtAccessToken(user);
+        String jwtRefreshToken = jwtManager.generatedJwtRefreshToken(user);
 
         Map<String, String> idToken = new HashMap<>();
         idToken.put("access-token", jwtAccessToken);
